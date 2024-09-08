@@ -1,17 +1,17 @@
 package main
 
 import (
-	tools "Tools/Tools"
 	"fmt"
 	"log"
 	"math"
 	"os"
+
+	tools "Tools/Tools"
 )
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Println("Syntax: go run main.go data.txt")
-		log.Fatalf("Error in arguments")
+		log.Fatalf("Usage: go run main.go data.txt")
 	}
 	filename := os.Args[1]
 	dataSet := tools.ReadFile(filename)
@@ -22,7 +22,7 @@ func main() {
 	avg := tools.Avg(dataSet)
 	med := tools.Median(dataSet)
 	vrn := tools.Variance(dataSet, avg)
-	stdDev := math.Sqrt(float64(vrn))
+	stdDev := math.Sqrt(vrn)
 
 	fmt.Printf("Average: %d\n", int(math.Round(avg)))
 	fmt.Printf("Median: %d\n", int(math.Round(med)))

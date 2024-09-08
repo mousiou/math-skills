@@ -8,6 +8,7 @@ import (
 )
 
 func ReadFile(fileName string) []float64 {
+	// Open the file
 	file, err := os.Open(fileName)
 	if err != nil {
 		log.Fatalf("failed to open file: %s", err)
@@ -16,6 +17,7 @@ func ReadFile(fileName string) []float64 {
 
 	var dataSet []float64
 
+	// Create a new scanner to read the file line by line.
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		value, err := strconv.ParseFloat(scanner.Text(), 64)
@@ -25,8 +27,11 @@ func ReadFile(fileName string) []float64 {
 		dataSet = append(dataSet, value)
 	}
 
+	// Check if there was an error during scanning.
 	if err := scanner.Err(); err != nil {
 		log.Fatalf("error reading file: %s", err)
 	}
+
+	// Return the slice containing all the numbers read from the file.
 	return dataSet
 }
