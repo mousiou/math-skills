@@ -10,12 +10,13 @@ import (
 
 func main() {
 	if len(os.Args) != 2 {
+		fmt.Println("Syntax: go run main.go data.txt")
 		log.Fatalf("Error in arguments")
 	}
 	filename := os.Args[1]
 	dataSet := tools.ReadFile(filename)
 	if len(dataSet) == 0 {
-		log.Fatalf("error: file is empty or contains no valid data")
+		log.Fatalf("Error: file is empty or contains no valid data")
 	}
 
 	avg := tools.Avg(dataSet)

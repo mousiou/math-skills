@@ -7,18 +7,18 @@ import (
 	"strconv"
 )
 
-func ReadFile(fileName string) []int {
+func ReadFile(fileName string) []float64 {
 	file, err := os.Open(fileName)
 	if err != nil {
 		log.Fatalf("failed to open file: %s", err)
 	}
 	defer file.Close()
 
-	var dataSet []int
+	var dataSet []float64
 
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
-		value, err := strconv.Atoi(scanner.Text())
+		value, err := strconv.ParseFloat(scanner.Text(), 64)
 		if err != nil {
 			log.Fatalf("failed to parse line: %s", err)
 		}
